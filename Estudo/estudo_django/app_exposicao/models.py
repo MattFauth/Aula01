@@ -9,6 +9,7 @@ class Pessoa(models.Model):
     telefone_celular = models.CharField('Telefone celular', max_length=15, help_text='Numero de telefone celular no formato (99) 99999-9999', null=True, blank=True)
     telefone_fixo = models.CharField('Telefone celular', max_length=15, help_text='Numero de telefone fixo no formato (99) 9999-9999', null=True, blank=True)
     email = models.EmailField('E-mail', null=True, blank=True)
+    cpf = models.CharField('CPF', max_length=14, help_text='CPF no formato 999.999.999-99')
 
     def __str__(self):
         return self.nome
