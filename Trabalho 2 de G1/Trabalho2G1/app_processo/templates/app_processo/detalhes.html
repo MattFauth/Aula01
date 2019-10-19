@@ -8,6 +8,23 @@
 </head>
 <body>
     <h1>{{ processo.numero }}</h1>
-    <p></p> 
+    <p>Criado por <strong>{{ processo.funcionario }}</strong></p> em {{ processo.data }}
+    <p>Departamento: {{ processo.departamento }} </p>
+    <h2>Interessados:</h2>
+    <p>
+        <ul>
+        {% for inter in processo.interessados.all %} <!-- Aqui itera interessados no processo -->
+            Nome: {{ inter.nome }}<br/> <!-- Aqui ele so imprime os nomes -->
+        {% endfor %}
+        </ul>
+    </p>
+    <h2>Investigados:</h2>
+    <p>
+        {% for inve in processo.investigados.all %} 
+            Nome: {{ inve.nome }}<br/>
+        {% endfor %}
+    </p>
+    <h2>Resumo do processo:</h2>
+    <p> {{ processo.resumo }} </p>
 </body>
 </html>

@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 class Departamento(models.Model):
     nome = models.CharField('Departamento', max_length=124, null=True, blank=True)
 
+    def __str__(self):
+        return self.nome
+
 
 class Pessoa(models.Model):
     nome = models.CharField('Nome', max_length=124, blank=True, null=True)
@@ -38,6 +41,7 @@ class Processo(models.Model):
     departamento = models.ForeignKey(Departamento, on_delete=models.SET_NULL, null=True, blank=True)
     interessados = models.ManyToManyField(Pessoa, 'Interessados')
     investigados = models.ManyToManyField(Pessoa, 'Investigados')
+    resumo = models.TextField('Resumo do processo', blank=True, null=True)
     data = models.DateField('Data criacao', null=True, blank=True)
 
     def __str__(self):
@@ -76,3 +80,14 @@ class Tramitacao(models.Model):
     origem = models.ForeignKey(Departamento, on_delete=models.SET_NULL, null=True, blank=True,related_name= 'Origem')
     destino = models.ForeignKey(Departamento, on_delete=models.SET_NULL, null=True, blank=True,related_name= 'Destino')
     dataMov = models.DateField('Data de movimentacao', null=True, blank=True)
+
+
+class MensagemDeContato(models.Model):
+    class Meta:
+        verbose_name = 'Mensagem de contato'
+        verbose_name_plural = 'Mensagens de contato'
+
+    nome = models.CharField(max_length=128)
+    email = models.EmailField('E-mail', null=True, blank=True)
+    mensagem = models.TextField()
+    data = models.DateTimeField(auto_now_add=True)
