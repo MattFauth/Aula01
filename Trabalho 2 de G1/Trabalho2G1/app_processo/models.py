@@ -27,6 +27,10 @@ class Funcionario(Pessoa):
     matricula = models.CharField('Matricula', max_length=20, blank=True, null=True)
     funcao = models.CharField('Funcao', max_length=124, blank=True, null=True)
 
+    def __str__(self):
+        return self.nome
+    
+
 
 class Processo(models.Model):
     numero = models.CharField('Numero do processo', max_length=25, help_text='Numero no modelo 9999999.99.9999.9.99.9999', blank=True, null=True)
