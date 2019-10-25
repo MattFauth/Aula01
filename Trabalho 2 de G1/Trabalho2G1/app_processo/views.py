@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Processo
+from .models import Processo, MensagemDeContato
 from .forms import ContatoForm
 from django.views.generic.edit import FormView
 from django.views.generic.base import TemplateView
+from django.urls import reverse
 
 
 def initial(request):
@@ -31,7 +32,7 @@ class ContatoView(FormView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('contato_sucesso')
+        return reverse('contatoPage')
 
     
 class ContatoSucessoView(TemplateView):
