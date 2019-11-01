@@ -4,4 +4,5 @@ from .views import initial, processo_detalhe, ContatoView, ContatoSucessoView
 urlpatterns = [
     path('', initial, name='primeiro'),
     path('processos/<int:processo_id>/', processo_detalhe, name='detalhes'),
-    path('contato/', ContatoView.as_view(), name='contatoPage'),]
+    path('contato/', ContatoView.as_view(), name='contatoPage'),
+    ]
