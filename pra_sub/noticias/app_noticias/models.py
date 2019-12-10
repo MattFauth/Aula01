@@ -13,7 +13,7 @@ class Pessoa(models.Model):
 
 class Tag(models.Model):
     nome = models.CharField(max_length=64)
-    slug = models.SlugField(max_length=64)
+    slug = models.SlugField(max_length=64)    
 
     def __str__(self):
         return self.nome
@@ -33,8 +33,12 @@ class Autor(models.Model):
         verbose_name = 'Autor'
         verbose_name_plural = 'Autores'
 
+    pessoa = models.OneToOneField(Pessoa, on_delete=models.SET_NULL, blank=True, null=True)
     matricula = models.TextField('Matricula do autor', max_length=120, null=True, blank=True)
     departamento = models.ForeignKey(Departamento, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Departamento')
+
+    def __str__(self):
+        return self.pessoa.__str__()
 
 class Noticia(models.Model):
     class Meta:
