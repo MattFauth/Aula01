@@ -54,3 +54,12 @@ class Noticia(models.Model):
     def __str__(self):
         return self.titulo
 
+class MensagemDeContato(models.Model):
+    class Meta:
+            verbose_name = 'Mensagem de contato'
+            verbose_name_plural = 'Mensagens de contato'
+
+    nome = models.CharField('Nome', max_length=128, blank=True, null=True)
+    email = models.EmailField('Email', blank=True, null=True)
+    mensagem = models.TextField(blank=True, null=True)
+    data = models.DateTimeField(auto_now_add=True, blank=True, null=True)
