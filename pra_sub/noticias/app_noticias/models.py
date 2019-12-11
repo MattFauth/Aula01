@@ -7,6 +7,7 @@ class Pessoa(models.Model):
     data_nascimento = models.DateField('Data de nascimento', blank=True, null=True)
     tel_cel = models.CharField('Telefone Celular', max_length=15, help_text='Numero no formato (99) 99999-9999', blank=True, null=True)
     email = models.EmailField('Endereco de email', blank=True, null=True)
+    autor = models.BooleanField()
 
     def __str__(self):
         return self.nome    
@@ -28,17 +29,6 @@ class Departamento(models.Model):
 
     def __str__(self):
         return self.nome
-class Autor(models.Model):
-    class Meta:
-        verbose_name = 'Autor'
-        verbose_name_plural = 'Autores'
-
-    pessoa = models.OneToOneField(Pessoa, on_delete=models.SET_NULL, blank=True, null=True)
-    matricula = models.TextField('Matricula do autor', max_length=120, null=True, blank=True)
-    departamento = models.ForeignKey(Departamento, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Departamento')
-
-    def __str__(self):
-        return self.pessoa.__str__()
 
 class Noticia(models.Model):
     class Meta:
@@ -48,7 +38,7 @@ class Noticia(models.Model):
     titulo = models.TextField('Titulo da noticia', max_length=120, null=True, blank=True)
     conteudo = models.TextField('Conteudo da noticia', null=True, blank=True)
     data = models.DateTimeField(verbose_name='Criado em', auto_now_add=True)
-    autor = models.ForeignKey(Autor, on_delete=models.SET_NULL, null=True, blank=True)
+    autor = models.ForeignKey(Pessoa, on_delete=models.SET_NULL, null=True, blank=True)
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):
@@ -63,3 +53,7 @@ class MensagemDeContato(models.Model):
     email = models.EmailField('Email', blank=True, null=True)
     mensagem = models.TextField(blank=True, null=True)
     data = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+    def __str__(self):
+        return 'Contato de numero {}'.format(self.pk)
+    

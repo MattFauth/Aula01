@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Departamento, Autor, Noticia, Pessoa, Tag, MensagemDeContato
+from .models import Departamento, Noticia, Pessoa, Tag, MensagemDeContato
 
-@admin.register(Departamento,Autor,Noticia,Pessoa, Tag, MensagemDeContato)
+@admin.register(Departamento,Noticia,Pessoa, Tag, MensagemDeContato)
 class NoticiaAdmin(admin.ModelAdmin):
     pass
 class MensagemDeContatoAdmin(admin.ModelAdmin):

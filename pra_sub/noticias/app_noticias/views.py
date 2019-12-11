@@ -19,6 +19,12 @@ def noticia_detalhes(request, noticia_id):
         raise Http404('Noticia nao encontrada')
     return render(request, 'app_noticias/detalhes.html', {'noticia':noticia})
 
+class HomePageView(TemplateView):
+    template_name = 'app_noticias/index.html'
+
+class ContatoSucessoView(TemplateView):
+    template_name='app_noticias/contato_sucesso.html'
+
 class ContatoView(FormView):
     template_name = 'app_noticias/contato.html'
     form_class = ContatoForm
@@ -31,10 +37,4 @@ class ContatoView(FormView):
 
     def get_success_url(self):
         return reverse('contato_sucesso')
-
-class HomePageView(TemplateView):
-    template_name = 'app_noticias/inicio.html'
-
-class ContatoSucessoView(TemplateView):
-    template_name='app_noticias/contato_sucesso.html'
     

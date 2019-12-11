@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Inicial</title>
+</head>
+<body>
+    <div class="top-bar"><h1>Jornal Local</h1></div>
+    <div class="container-1">
+            {% if user.is_authenticated %}
+            <p class="logged-in-p">
+                Ola {{ user.first_name }} seja bem vindo(a).
+                <br>
+                <span class="sair"><a href="{% url 'logout' %}">Sair</a></span>
+            </p>
+            <p>
+                {% if  %}
+            </p>
+            {% else %}
+            <h1>Ola, visitante! Voce nao esta logado.</h1>
+            <h2>Realize seu Login <span class="logar"><a href="{% url 'login' %}">aqui</a></span></h2>
+            {% endif %}
+    </div>
+    <div class="container-2">
+        <h1>Noticias recentes</h1>
+
+    </div>
+</body>
+</html>

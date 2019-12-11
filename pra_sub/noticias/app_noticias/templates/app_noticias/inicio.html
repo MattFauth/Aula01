@@ -7,6 +7,15 @@
     <title>Inicio</title>
 </head>
 <body>
-    <h1>Ola!</h1>
+    {% if user.is_authenticated %}
+    <p class="logged-in-p">
+        Ola {{ user.first_name }} seja bem vindo(a).
+        <br>
+        <span class="sair"><a href="{% url 'logout' %}">Sair</a></span>
+    </p>
+    {% else %}
+    <h1>Ola! Voce nao esta logado.</h1>
+    <h2>Realize seu Login <span class="logar"><a href="{% url 'login' %}">aqui</a></span></h2>
+    {% endif %}
 </body>
 </html>
