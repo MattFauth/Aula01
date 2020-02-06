@@ -1,7 +1,7 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, reverse
-from .models import Noticia, MensagemDeContato
-from .forms import ContatoForm
+from .models import Noticia, MensagemDeContato, Pessoa
+from .forms import ContatoForm, NoticiaForm
 from django.views.generic import TemplateView, ListView, FormView
 
 def noticias_resumo(request):
@@ -38,3 +38,25 @@ class ContatoView(FormView):
     def get_success_url(self):
         return reverse('contato_sucesso')
     
+class NoticiaView(FormView):
+    template_name = 'noticia/criar_noticia.html'
+    form_class = NoticiaForm
+
+    def form_valid(self, form):
+        dados = form.clean()
+        autor = Pessoa.objects.get(usuario=self.request.user)
+        noticia = Noticia(
+            titulo=dados['titulo'],
+            conteudo=dados['conteudo'],
+            autor=autor,
+            tags=dados['tags'])
+        noticia.save()
+
+        return super().form_valid()
+
+    def get_success_url(self):
+        return reverse('noticia_sucesso')
+
+class NoticiaSucessoView(TemplateView):
+    template_name = 'app_noticias/noticia_sucesso'
+
