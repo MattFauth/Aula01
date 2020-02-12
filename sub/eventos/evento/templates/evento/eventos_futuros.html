@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eventos</title>
+</head>
+<body>
+    <h1>EVENTOS FUTUROS</h1>
+    <div>
+        {% for evento in todos %}
+            <h2><a href="{% url 'detalhe' evento.pk %}" >{{ evento.nome }}</a></h2>
+            <p> {{ evento.descricao }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

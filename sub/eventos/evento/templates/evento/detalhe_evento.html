@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ evento.nome }}}</title>
+</head>
+<body>
+    <h1>{{ evento.nome }}</h1>
+    <p>Realizador: <strong>{{ evento.realizador }}</strong><br> Ocorrera em {{ evento.data_inicio }}</p>
+    <h3>
+        Sigla: {{ evento.sigla }}
+    </h3>
+    <div>
+        {{ noticia.conteudo | linebreaks }}
+    </div>
+</body>
+</html>

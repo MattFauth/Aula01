@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Ola!</h1>
+        <h3>Aqui estao alguns links uteis:</h3>
+        {% if user.is_authenticated %}
+            <p><span class="logout"><a href="{% url 'logout' %}">Logout</a></span></p>
+            <p><span class="futuro"><a href='{% url "futuro" %}'>Eventos Futuros</a></span></p>
+            <p><span class="cad_pessoa"><a href='{% url "cadPessoa" %}' >Cadastrar Pessoa</a></span></p>
+            <p><span class="cad_evento"><a href='{% url "cadEvento" %}' >Cadastrar Evento</a></span></p>
+            <p><span class="cad_ingresso"><a href='{% url "cadIngresso" %}' >Cadastrar Ingressoa</a></span></p>
+        {% else %}
+            <p><span class="logar"><a href="{% url 'login' %}">Login</a></span></p>
+            <p><span class="futuro"><a href='{% url "futuro" %}'>Eventos Futuros</a></span></p>
+        {% endif %}
+    </div>
+</body>
+</html>
